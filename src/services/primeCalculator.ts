@@ -21,7 +21,7 @@ const isPrime = async (req: Request, res: Response) => {
 
     if (res.locals.number) {
       res.json({
-        number: num,
+        result: num,
         isPrime: calculatePrime(num),
       })
     } else {
