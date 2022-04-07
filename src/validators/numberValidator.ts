@@ -5,11 +5,10 @@ const validateNumbers = [
   check('numbers')
     .exists()
     .withMessage('missing')
-    .withMessage('Param is not a valid array')
     .custom((value) => {
       const arr: Array<number> = JSON.parse(<string>value)
       const res = arr.every((e) => {
-        return parseInt(String(e)) || e === 0
+        return parseInt(String(e)) || e == 0
       })
       if (!res) throw new Error('Array does not contain Integers') // check that contains Integers
       return true
@@ -26,7 +25,7 @@ const validateNumbers = [
 ]
 
 const validateNumber = [
-  check('number').isNumeric().withMessage('Please send a valid number.').bail(),
+  check('number').isInt({min: 1}).withMessage('Please send a valid number.').bail(),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
