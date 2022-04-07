@@ -5,14 +5,16 @@ const validateNumbers = [
   check('numbers')
     .exists()
     .withMessage('missing')
+    .withMessage('Param is not a valid array')
     .custom((value) => {
-      const parsed = JSON.parse(value)
-      if (!parsed.every(Number.isInteger)) {
-        throw new Error('Not all elements of array are integers')
-      }
+      const arr: Array<number> = JSON.parse(<string>value)
+      const res = arr.every((e) => {
+        return parseInt(String(e)) || e === 0
+      })
+      if (!res) throw new Error('Array does not contain Integers') // check that contains Integers
       return true
     })
-    .withMessage('Numbers were send in invalid format.')
+    .withMessage('Array is not valid')
     .bail(),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req)
