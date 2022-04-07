@@ -2,6 +2,12 @@
 
 This project is a code sample application that is the server for my [React Prime Calculator](https://github.com/tiitustelke/react-prime-calculator).
 
+## Nice things about this Express.js app
+
+- Validation using express-validator 
+- TypeScript for more reliability
+- Integration tests using Jest and SuperTest
+
 ## How to run this app
 
 1. Install [Node.js](https://nodejs.org/en/) to your computer.
